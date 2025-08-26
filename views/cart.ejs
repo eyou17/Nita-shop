@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+     <style>
+        .w-100:hover{
+            background-color: #212529; 
+            color: #fff;
+        }
+     </style>
+    </head>
+
+    
+
+
+<body class="bg-body-tertiary"> 
+        <%- include('partial/customer_header.ejs') %>
+        
+<div class="container"> 
+    <main> 
+        <div class="py-5 text-center">
+              <h1 class="h2">Checkout form</h1> 
+            </div> 
+            <div class="row g-5"> 
+                <div class="col-md-5 col-lg-4 order-md-last"> 
+                    <h4 class="d-flex justify-content-between align-items-center mb-3"> 
+                        <span class="text-primary">Your cart</span>
+                        <% if(locals.shoes.length !== 0){ %>
+                            <span class="badge bg-primary rounded-pill"><%= shoes.length %></span> 
+                            <% } else{%>
+                         <span class="badge bg-primary rounded-pill">0</span> 
+                         <% } %>
+                    </h4> 
+                    <ul class="list-group mb-3"> 
+                        <% if(locals.shoes.length !== 0){ %>
+                            <% shoes.forEach(item => {%>
+                                <li class="list-group-item d-flex justify-content-between lh-sm"> 
+                                    <form action="/cart_delete" method="post">
+                                        <input type="hidden" name="id" value="<%= JSON.stringify(item) %>">
+                                        <button style="background-color: white; border: none;" type="submit">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-octagon-fill" viewBox="0 0 16 16">
+                                                <path d="M11.46.146A.5.5 0 0 0 11.107 0H4.893a.5.5 0 0 0-.353.146L.146 4.54A.5.5 0 0 0 0 4.893v6.214a.5.5 0 0 0 .146.353l4.394 4.394a.5.5 0 0 0 .353.146h6.214a.5.5 0 0 0 .353-.146l4.394-4.394a.5.5 0 0 0 .146-.353V4.893a.5.5 0 0 0-.146-.353zm-6.106 4.5L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 1 1 .708-.708"/>
+                                            </svg>
+                                        </button>
+                                        
+                                    </form>
+                                    
+                            <div> 
+                                
+                                <h6 class="my-0"><%= item.shoes_name %> </h6> 
+                                
+                            </div> 
+                            <span class="text-body-secondary">$<%= item.shoes_price * Number( item.quantity) %></span> 
+                        </li> 
+                           <% }); %>
+                            
+                        
+                        
+    
+                        <li class="list-group-item d-flex justify-content-between"> 
+                            <span>Total (USD)</span> 
+                            <% var total = 0; %>
+                            <% for(var i = 0; i<shoes.length;i++){ %>
+                                <% total = total + (Number(shoes[i].shoes_price) * Number(shoes[i].quantity))%>
+                                <% } %>
+                            <strong>$<%= total %></strong> 
+                        </li> 
+                            <% } else{%>
+                        <li class="list-group-item d-flex justify-content-between lh-sm"> 
+                            <div> 
+                                <h6 class="my-0">Product name</h6> 
+                                 
+                            </div> 
+                            <span class="text-body-secondary">$0</span> 
+                        </li> 
+                        
+                        
+    
+                        <li class="list-group-item d-flex justify-content-between"> 
+                            <span>Total (USD)</span> 
+                            <strong>$0</strong> 
+                        </li> 
+                        <% } %>
+                    </ul> 
+                    
+                    
+                </div> 
+                <div class="col-md-7 col-lg-8"> 
+                    <h4 class="mb-3">Billing address</h4> 
+                    
+                    <form class="needs-validation" action="/check_out" method="post"> 
+                        <div class="row g-3"> 
+                            <input type="hidden" name="shoes" id="" value="<%= JSON.stringify(shoes) %>" required>
+                            <div class="col-sm-6"> 
+                                <label for="firstName" class="form-label">email</label> 
+                                <input type="text" name="email" class="form-control" readonly id="firstName" placeholder="" value="<%= email %>" required> 
+                                
+                            </div>   
+                           
+                            <hr class="my-4"> 
+                           
+                            <button  class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button> 
+                    </form> 
+                    <a href="/home"><button class="w-100 btn btn-primary btn-lg" type="button">Continue to buy</button> 
+                    </a>
+
+                        </div> 
+               
+            </main> 
+     </div>
+     <%- include('partial/customer_footer.ejs') %>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+    </body>
+</html>

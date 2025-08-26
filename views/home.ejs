@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    </head>
+<body>
+
+    
+  <%- include("partial/header.ejs") %>
+
+    <div class="row">
+       
+        <% data.forEach(element => {%>
+            
+            <div class="con col-sm-12 col-md-6 col-lg-4" > 
+                <div class="card shadow-sm"> 
+                    <img src="../uploads/<%=element.shoes_image %>" alt="" max-width="100%" height="auto">
+                    <!-- <svg aria-label="Placeholder: Thumbnail" class="bd-placeholder-img card-img-top" height="225" preserveAspectRatio="xMidYMid slice" role="img" width="100%" xmlns="http://www.w3.org/2000/svg">
+                        <title></title>
+                        <rect width="100%" height="100%" fill="#55595c"></rect>
+                        <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
+                    
+                    </svg>  -->
+                    
+                    <div class="card-body"> 
+                        
+                       
+                        
+                        <p class="card-text"><button type="button" class="btn btn-info"><%=element.shoes_number %></button></p> 
+                        <p class="card-text"> <button type="button" class="btn btn-info"><%=element.shoes_price %>$</button></p> 
+                        <div class="d-flex justify-content-between align-items-center"> 
+                            <div class="btn-group"> 
+                                
+                                
+                            </div> 
+                            <small class="text-body-secondary"><%=element.shoes_catagory %></small> 
+                             </div> 
+                    </div> 
+                </div> 
+    </div>
+
+      <%  }); %>
+    </div>
+
+    
+   
+
+
+     <%- include('partial/fotter') %>
+
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+    </body>
+</html>

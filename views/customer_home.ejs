@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    </head>
+<body>
+
+    <% if(locals.user){ %>
+        <% const email = user.email %>
+        <% } %>
+    
+  <%- include("partial/customer_header.ejs") %>
+
+  <div style="display: flex;">
+    <form  action="/home" method="get" >
+    <button class="btn btn-info" type="submit">all</button>
+  </form>
+
+  <form   action="/men" method="get" >
+    <button class="btn btn-info" type="submit">men</button>
+  </form>
+  <form  action="/women" method="get" >
+    <button class="btn btn-info" type="submit">women</button>
+  </form>
+  <form  action="/kid" method="get" >
+    <button class="btn btn-info" type="submit">kid</button>
+  </form>
+
+  
+  
+    <form  action="/cart" method="get" >
+       
+        
+                                   
+        <button class="btn btn-info" value="submit" >
+             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 88 88" style="width: 60; height: 20px;">
+    <g data-name="Shop cart">
+        <path d="M19 67h53a1 1 0 0 0 .95-.69l10-31A.996.996 0 0 0 82 34h-9.03a17.998 17.998 0 0 1-35.94 0h-8.87L26.6 21.85l-.61-4A1.023 1.023 0 0 0 25 17H8a3 3 0 0 0 0 6h16.731c2.128 16.623.51 5.286 6.104 42H19a5 5 0 0 0 0 10h10.11a7 7 0 1 0 9.779 0h30.222A6.993 6.993 0 1 0 74 73H19a3 3 0 0 1 0-6zm15 16a3 3 0 1 1 3-3 3.003 3.003 0 0 1-3 3zm43-3a3 3 0 1 1-3-3 3.003 3.003 0 0 1 3 3z" style="fill:#202021"/>
+        <circle cx="34" cy="80" r="1" style="fill:#202021"/>
+        <circle cx="74" cy="80" r="1" style="fill:#202021"/>
+        <path d="M55 43a10 10 0 1 0-10-10 10.012 10.012 0 0 0 10 10zm-3.081-10.422A3.473 3.473 0 0 1 53.472 26H54v-1a1 1 0 0 1 2 0v1h.528A3.476 3.476 0 0 1 60 29.472a1 1 0 0 1-2 0A1.473 1.473 0 0 0 56.528 28H56v4.382l2.081 1.04A3.473 3.473 0 0 1 56.528 40H56v1a1 1 0 0 1-2 0v-1h-.528A3.476 3.476 0 0 1 50 36.528a1 1 0 0 1 2 0A1.473 1.473 0 0 0 53.472 38H54v-4.382z" style="fill:#202021"/>
+        <path d="M58 36.528a1.464 1.464 0 0 0-.814-1.317L56 34.618V38h.528A1.473 1.473 0 0 0 58 36.528zM54 28h-.528a1.472 1.472 0 0 0-.659 2.79l1.187.592z" style="fill:#202021"/>
+        <path d="M55 49a16 16 0 1 0-16-16 16.018 16.018 0 0 0 16 16zm0-28a12 12 0 1 1-12 12 12.013 12.013 0 0 1 12-12zM55 14a1 1 0 0 0 1-1V2a1 1 0 0 0-2 0v11a1 1 0 0 0 1 1zM61 16a1 1 0 0 0 1-1V7a1 1 0 0 0-2 0v8a1 1 0 0 0 1 1zM49 16a1 1 0 0 0 1-1V7a1 1 0 0 0-2 0v8a1 1 0 0 0 1 1z" style="fill:#202021"/>
+    </g>
+</svg>
+        </button>
+    </form>
+  </div>
+  
+    
+
+  
+    <div class="row">
+       
+        <% data.forEach(element => {%>
+            
+            <div class="con col-sm-12 col-md-6 col-lg-4" > 
+                <div class="card shadow-sm" > 
+                    <img src="../uploads/<%=element.shoes_image %>" alt="" max-width="100%" height="auto">
+                   
+                    
+                    <div class="card-body"> 
+                        
+                       
+                        
+                        <p class="card-text"><button type="button" class="btn btn-info"><%=element.shoes_number %></button></p> 
+                        <p class="card-text"> <button type="button" class="btn btn-info"><%=element.shoes_price %>$</button></p> 
+                        <div class="d-flex justify-content-between align-items-center"> 
+                            <div class="btn-group"> 
+                                <form action="/cart" method="post">
+                                    <input type="hidden" name="item" value="<%= element.id %>" required>
+                                    <input type="number" name="quantity" value="1" min="1" max="10">
+                                    <button type="submit"  class="btn btn-sm btn-outline-secondary">add to cart</button> 
+                                    
+
+                                </form>
+                                
+                            </div> 
+                            <small class="text-body-secondary"><%=element.shoes_catagory %></small> 
+                             </div> 
+                    </div> 
+                </div> 
+    </div>
+
+      <%  }); %>
+    </div>
+
+    
+   
+
+
+     <%- include('partial/customer_footer') %>
+
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+    </body>
+</html>

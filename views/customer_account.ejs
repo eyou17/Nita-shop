@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sign In</title>
+  <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    body {
+      padding-top: 70px; /* for fixed navbar */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background-color: #f8f9fa;
+    }
+    .form-signin {
+      max-width: 400px;
+      padding: 2rem;
+      border-radius: 0.5rem;
+      background: #fff;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+  <% if(locals.success){ %>
+    <div>
+       <h1 style="color: rgb(85, 185, 85);"><%= success %></h1><br>
+    </div>
+   
+    <% } %>
+
+  <div class="form-signin">
+    <h1 class="h3 mb-3 fw-normal text-center">Change Password</h1>
+
+    <form class="row g-3" method="POST" action="/account">
+             
+ <div class="col-auto">
+    <label for="staticEmail2" class="visually-hidden">Email</label>
+    <input type="text" name="email" readonly class="form-control-plaintext" id="staticEmail2" value=<%= email %>>
+  </div><br>
+  <div class="col-auto">
+    <label for="inputPassword2" class="visually-hidden">Current Password</label>
+    <input type="text" name="curpassword" nameclass="form-control" id="inputPassword2" placeholder="Password">
+  </div><br>
+
+  <div class="col-auto">
+    <label for="inputPassword2" class="visually-hidden">New Password</label>
+    <input type="text" name="newpassword" nameclass="form-control" id="inputPassword2" placeholder="Password">
+  </div><br>
+  <div class="col-auto">
+    <button type="submit" class="btn btn-primary mb-3">Change</button>
+    <a style="text-decoration: none; color: black;border: 1px solid black; border-radius: 2px;" href="/home">home</a>
+  </div>
+
+    </form>
+
+   </div>
+
+  <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

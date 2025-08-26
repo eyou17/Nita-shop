@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        .connn{
+            display: flex;
+            justify-content: center;
+           
+        }
+
+           
+    
+    
+
+    </style>
+    </head>
+<body>
+    <%- include('partial/admin_header') %>
+    <div class="connn">
+            
+            <div >
+                <% if(locals.success){ %>
+                    <h3 style="background-color: rgb(94, 211, 94); color: red;"><%= success %></h3>
+                    <% } %>
+                <a style="text-decoration: none; color: black;" href="/admin_home"><h1>Edit Shoes</h1></a>
+                 <form action="/editee_shoe" method="post" >
+                     <input type="hidden" name="shoe_id" class="form-control" value="<%= shoe[0].id %>" required>
+    
+    <div class="form-group mb-3">
+       
+      <label for="shoe_name">Name</label>
+      <input type="text" name="shoe_name" class="form-control" value="<%= shoe[0].shoes_name %>" required>
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="shoe_color">Color</label>
+      <input type="text" name="shoe_color" class="form-control" value="<%= shoe[0].shoes_color %>" required>
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="shoe_price">Price</label>
+      <input type="text" name="shoe_price" class="form-control" value="<%= shoe[0].shoes_price %>">
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="shoe_number">Number</label>
+      <input type="text" name="shoe_number" class="form-control"  value="<%= shoe[0].shoes_number %>" required>
+    </div>
+    <div class="form-group mb-3">
+      <label for="shoe_number">Catagory</label>
+      <input type="text" name="shoe_catagory" class="form-control" value="<%= shoe[0].shoes_catagory %>" required>
+    </div>
+
+    
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+
+
+            </div>
+
+          
+                   
+
+                    
+                    
+            </div><br><br>
+
+    
+           
+
+                    
+            </div>
+
+
+            </div>
+           
+
+
+    </div>
+
+
+     <%- include('partial/admin_footer') %>
+     
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    </body>
+</html>

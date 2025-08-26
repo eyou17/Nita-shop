@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Orders Table</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+   
+
+<div class="container mt-5">
+    <% if(locals.password){ %>
+            <h3 style="background-color: rgb(94, 211, 94); color: red;"><%= password %></h3>
+         <% } %>
+  <a style="text-decoration: none; color: black;" href="/admin_home"><h2 class="mb-4 text-center">CUSTOMER</h2></a>
+  <div class="table-responsive">
+    <table class="table table-striped table-bordered table-hover align-middle text-center">
+      <thead class="table-dark">
+        <tr>
+          <th>ID</th>
+          <th>Username</th>
+          <th>Phone</th>
+          <th>Address</th>
+          
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Example rows -->
+         <% if(locals.customers) {%>
+         <% customers.forEach(customer => {%>
+            <tr>
+                <td> <%= customer.id %> </td>
+                <td><%= customer.username %></td>
+                <td><%= customer.phone %></td>
+                <td><%= customer.address %></td>
+                
+                 <td>
+                    <form action="/update_user" method="post">
+                        <input type="hidden" name="email" value="<%= customer.username %>" required>
+                        <button type="submit" class="btn btn-primary">Change password</button>
+                    </form>
+                </td>
+        </tr>
+        <%  }); %>
+        <% } %>
+        
+       
+       
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
